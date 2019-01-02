@@ -5,7 +5,8 @@
   "rules": {
     "arrow-parens": false,
     "no-console": false,
-    "indent": [true, "spaces", 4]
+    "indent": [true, "spaces", 4],
+    "interface-name": false
   },
   "rulesDirectory": []
 }
