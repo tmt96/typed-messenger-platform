@@ -1,5 +1,4 @@
 import { Button, UrlButton } from "./button";
-import { Address } from "cluster";
 
 /**
  * @module typed-messenger-platform
@@ -230,4 +229,10 @@ export interface PassengerSegmentInfo {
   seat: string;
   seat_type: string;
   product_info?: string;
+}
+
+export interface PriceInfo {
+  title: string;
+  amount: number;
+  currency?: string;
 }
