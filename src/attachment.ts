@@ -9,6 +9,8 @@ export type Attachment =
   | VideoAttachment
   | AudioAttachment
   | FileAttachment
+  | LocationAttachment
+  | FallbackAttachment
   | TemplateAttachment;
 
 export interface ImageAttachment {
@@ -31,6 +33,18 @@ export interface FileAttachment {
   payload: MultimediaPayload;
 }
 
+export interface LocationAttachment {
+  type: "location";
+  payload: LocationPayload;
+}
+
+export interface FallbackAttachment {
+  type: "fallback";
+  payload: null;
+  title: string;
+  URL: string;
+}
+
 export interface TemplateAttachment {
   type: "template";
   payload: TemplatePayload;
@@ -39,4 +53,12 @@ export interface TemplateAttachment {
 export interface MultimediaPayload {
   url?: string;
   is_reusable?: boolean;
+  attachment_id?: number;
+}
+
+export interface LocationPayload {
+  coordinates: {
+    lat: number;
+    long: number;
+  };
 }

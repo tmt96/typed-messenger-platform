@@ -2,7 +2,10 @@
  * @module typed-messenger-platform
  */
 
-export * from "./attachment";
-export * from "./button";
-export * from "./send-api";
-export * from "./template";
+import * as attachment from "./attachment";
+import * as button from "./button";
+import * as sendApi from "./send-api";
+import * as template from "./template";
+import * as webhooks from "./webhooks-api";
+
+export { attachment, button, sendApi, template, webhooks };
