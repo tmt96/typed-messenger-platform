@@ -6,7 +6,8 @@
     "arrow-parens": false,
     "no-console": false,
     "indent": [true, "spaces", 4],
-    "interface-name": false
+    "interface-name": false,
+    "no-empty-interface": false
   },
   "rulesDirectory": []
 }
