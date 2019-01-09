@@ -1,2 +1,3 @@
 # typed-messenger-platform
-Messenger Platform API in Tyupescript
+
+Messenger Platform API in Typescript
