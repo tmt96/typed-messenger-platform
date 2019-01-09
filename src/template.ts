@@ -59,7 +59,7 @@ export interface ReceiptTemplate {
   payment_method: string;
   timestamp?: string;
   elements: ReceiptElement[];
-  address?: ReceiptAddress;
+  address?: Address;
   summary: ReceiptSummary;
   adjustments: ReceiptAdjustment[];
 }
@@ -133,7 +133,8 @@ export interface OpenGraphElement {
   buttons: Button[];
 }
 
-export interface ReceiptAddress {
+export interface Address {
+  id?: string;
   street_1: string;
   street_2?: string;
   city: string;
