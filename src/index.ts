@@ -300,6 +300,38 @@ export interface BroadcastMessageSendResponse {
 }
 
 /***************************************************************
+ * HANDOVER PROTOCOL
+ ***************************************************************/
+
+export interface HandoverProtocolRequest {
+  recipient: {
+    id: number;
+  };
+  metadata?: string;
+}
+
+export interface HandoverProtocolSucessResponse {
+  success: boolean;
+}
+
+export interface PassThreadControlRequest extends HandoverProtocolRequest {
+  target_app_id: number;
+}
+
+export type RequestThreadControlRequest = HandoverProtocolRequest;
+
+export type TakeThreadControlRequest = HandoverProtocolRequest;
+
+export interface MessageReceiver {
+  id: number;
+  name: string;
+}
+
+export interface SecondaryReceiversList {
+  data: MessageReceiver[];
+}
+
+/***************************************************************
  * ATTACHMENTS
  ***************************************************************/
 
