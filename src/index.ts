@@ -2,16 +2,9 @@
  * @module typed-messenger-platform
  */
 
-/**************************
- * SEND API
- **************************/
-
-export type Request = SenderActionRequest | MessageRequest;
-
-export interface Response {
-  recipient_id: string;
-  message_id: string;
-}
+/*************************************
+ * Error
+ *************************************/
 
 export interface Error {
   message: string;
@@ -19,6 +12,17 @@ export interface Error {
   code: number;
   error_subcode: number;
   fbtrace_id: string;
+}
+
+/********************************************************************
+ * SEND API
+ ********************************************************************/
+
+export type SendAPIRequest = SenderActionRequest | MessageRequest;
+
+export interface SendAPIResponse {
+  recipient_id: string;
+  message_id: string;
 }
 
 export interface SenderActionRequest {
@@ -80,9 +84,9 @@ export type QuickReplyContentType =
   | "user_phone_number"
   | "user_email";
 
-/*****************
+/***********************************************************
  * WEBHOOK API
- *****************/
+ ***********************************************************/
 
 export interface WebhookEvent {
   object: "page";
@@ -273,9 +277,31 @@ export type ReferralSource =
 
 export type GamePlayContextType = "SOLO" | "THREAD" | "GROUP";
 
-/*********************
+/**************************************************************
+ * BROADCAST API
+ **************************************************************/
+export interface BroadcastMessageCreationRequest {
+  messages: Message;
+}
+
+export interface BroadcastMessageCreationResponse {
+  message_creative_id: number;
+}
+
+export interface BroadcastMessageSendRequest {
+  message_creative_id: number;
+  notification_type: "REGULAR" | "SILENT_PUSH" | "NO_PUSH";
+  messaging_type: "MESSAGE_TAG";
+  tag: "NON_PROMOTIONAL_SUBSCRIPTION";
+}
+
+export interface BroadcastMessageSendResponse {
+  broadcast_id: number;
+}
+
+/***************************************************************
  * ATTACHMENTS
- *********************/
+ ***************************************************************/
 
 export type Attachment =
   | ImageAttachment
@@ -574,9 +600,9 @@ export type AirlineFlightUpdateType = "delay" | "gate_change" | "cancellation";
 
 export type FlightTravelClass = "economy" | "business" | "first_class";
 
-/********************
+/**************************************************************
  * BUTTONS
- ********************/
+ **************************************************************/
 
 export type Button =
   | BuyButton
