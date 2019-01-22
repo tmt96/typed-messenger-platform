@@ -378,6 +378,54 @@ export interface BotHomeUrl {
 }
 
 /***************************************************************
+ * ID MATCHING API
+ ***************************************************************/
+
+export interface IDMatchingRequest {
+  page?: number;
+  app?: number;
+  access_token: string;
+  appsecret_proof: string;
+}
+
+export interface IDMatchingResponse {
+  data: IDMatchingData[];
+  paging: IDMatchingPaging;
+}
+
+export interface AppIDMatchingResponse {
+  data: AppIDMatchingData;
+}
+
+export interface PageIDMatchingResponse {
+  data: PageIDMatchingData;
+}
+
+export interface AppIDMatchingData {
+  id: string;
+  app: {
+    link: string;
+    name: string;
+    id: number;
+  };
+}
+
+export interface PageIDMatchingData {
+  id: string;
+  page: {
+    name: string;
+    id: number;
+  };
+}
+
+export interface IDMatchingPaging {
+  cursors: {
+    before: string;
+    after: string;
+  };
+}
+
+/***************************************************************
  * ATTACHMENTS
  ***************************************************************/
 
