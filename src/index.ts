@@ -281,8 +281,17 @@ export type GamePlayContextType = "SOLO" | "THREAD" | "GROUP";
  * BROADCAST API
  **************************************************************/
 export interface BroadcastMessageCreationRequest {
-  messages: Message;
+  messages: BroadcastMessage[];
 }
+
+export interface DynamicTextMessage {
+  dynamic_text: {
+    text: string;
+    fallback_text: string;
+  };
+}
+
+export type BroadcastMessage = DynamicTextMessage | Message;
 
 export interface BroadcastMessageCreationResponse {
   message_creative_id: number;
@@ -389,15 +398,14 @@ export interface IDMatchingRequest {
 }
 
 export interface IDMatchingResponse {
-  data: IDMatchingData[];
   paging: IDMatchingPaging;
 }
 
-export interface AppIDMatchingResponse {
+export interface AppIDMatchingResponse extends IDMatchingResponse {
   data: AppIDMatchingData;
 }
 
-export interface PageIDMatchingResponse {
+export interface PageIDMatchingResponse extends IDMatchingResponse {
   data: PageIDMatchingData;
 }
 
@@ -423,6 +431,80 @@ export interface IDMatchingPaging {
     before: string;
     after: string;
   };
+}
+
+/***************************************************************
+ * Messenger Code API
+ ***************************************************************/
+
+export interface MessengerCodeRequest {
+  type: "standard";
+  image_size?: number;
+  data?: {
+    ref?: string;
+  };
+}
+
+export interface MessengerCodeResponse {
+  uri: string;
+}
+
+/***************************************************************
+ * FEATURE REVIEW
+ ***************************************************************/
+
+export interface FeatureReviewResponse {
+  data: FeatureReviewResult[];
+}
+
+export interface FeatureReviewResult {
+  feature: string;
+  status: FeatureReviewStatus;
+}
+
+export type FeatureReviewStatus =
+  | "PENDING"
+  | "REJECTED"
+  | "APPROVED"
+  | "LIMITED";
+
+/***************************************************************
+ * INSIGHTS API
+ ***************************************************************/
+
+export interface InsightsResponse {
+  data: InsightsResponseData;
+}
+
+export interface InsightsResponseData {
+  name: string;
+  values: InsightsResponseValue;
+}
+
+export interface InsightsResponseValue {
+  value: number | InsightsResponseValueByType;
+  end_time: string;
+}
+
+export interface InsightsResponseValueByType {
+  [key: string]: number;
+}
+
+/***************************************************************
+ * SPONSORED MESSGAGE
+ ***************************************************************/
+
+export interface SponsoredMessageSendRequest {
+  message_creative_id: number;
+  daily_budget: number;
+  bid_amount: 400;
+  targeting: any;
+}
+
+export interface SponsoredMessageSendResponse {
+  ad_group_id: number;
+  broadcast_id: number;
+  success: boolean;
 }
 
 /***************************************************************
