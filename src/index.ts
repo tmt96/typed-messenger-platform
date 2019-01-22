@@ -332,6 +332,52 @@ export interface SecondaryReceiversList {
 }
 
 /***************************************************************
+ * PROFILE API
+ ***************************************************************/
+
+export interface ProfileProperties {
+  account_linking?: string;
+  get_started?: GetStartedProperty;
+  greeting?: Greetings[];
+  whitelisted_domains?: string[];
+  payment_settings?: PaymentSettings;
+  target_audience?: TargetAudience;
+  home_url?: BotHomeUrl;
+}
+
+export interface GetStartedProperty {
+  payload: string;
+}
+
+export interface Greetings {
+  locale: string;
+  text: string;
+}
+
+export interface PaymentSettings {
+  privacy_url?: string;
+  public_key?: string;
+  testers?: number[];
+}
+
+export interface TargetAudience {
+  audience_type: "all" | "custom" | "none";
+  countries?: TargetCountrySettings;
+}
+
+export interface TargetCountrySettings {
+  blacklist?: string[];
+  whitelist?: string[];
+}
+
+export interface BotHomeUrl {
+  url: string;
+  webview_height_ratio: "tall";
+  webview_share_button?: "show" | "hide";
+  in_test: boolean;
+}
+
+/***************************************************************
  * ATTACHMENTS
  ***************************************************************/
 
